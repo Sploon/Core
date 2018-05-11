@@ -1,0 +1,11 @@
+name: Core
+version: 0.1
+description: Core plugin
+load: STARTUP
+author: PhantomUnicorns
+main: core.Core
+commands:
+  Configuration:
+    description: Basic command for configuration handling
+    usage: /Configuration
+    aliases: [config]
