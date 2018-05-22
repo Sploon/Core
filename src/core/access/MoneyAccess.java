@@ -23,35 +23,35 @@ public class MoneyAccess extends ObjectAccess {
 	/**
 	 * @return The maximum amount (rounded) an account can have
 	 */
-	public static int getMaxAmount() {
+	protected static int getMaxAmount() {
 		return (int) _MAX_AMOUNT;
 	}
 
 	/**
 	 * @return The maximum amount (exact) an account can have
 	 */
-	public static double getExactMaxAmount() {
+	protected static double getExactMaxAmount() {
 		return _MAX_AMOUNT;
 	}
 
 	/**
 	 * @return The minimum amount (rounded) an account can have
 	 */
-	public static int getMinAmount() {
+	protected static int getMinAmount() {
 		return (int) _MIN_AMOUNT;
 	}
 
 	/**
 	 * @return The minimum amount (exact) an account can have
 	 */
-	public static double getExactMinAmount() {
+	protected static double getExactMinAmount() {
 		return _MIN_AMOUNT;
 	}
 	
 	/**
 	 * @return The economy; used to handle money
 	 */
-	public static Economy getEconomy() {
+	protected static Economy getEconomy() {
 		return _core.getEconomy();
 	}
 }

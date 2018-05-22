@@ -2,6 +2,7 @@ package core.access;
 
 import core.Core;
 import core.exceptions.core.AlreadySetCoreException;
+import core.exceptions.core.CoreNotSetException;
 
 /**
  * The main access to basic utensuls
@@ -13,15 +14,13 @@ public class MainAccess {
 	private static final Class<?> _THIS;
 	private static boolean _initilzed;
 	
-	protected static final String _EMPTY_STRING;
+	protected static final String _EMPTY_STRING, _MAIN_COLOR;
 	protected static Core _core;
-	
-	public static final String MAIN_COLOR;
 
 	static {
 		_THIS = MainAccess.class;
 		_EMPTY_STRING = "";
-		MAIN_COLOR = "&6";
+		_MAIN_COLOR = "&6";
 		_initilzed = false;
 	}
 	
@@ -29,7 +28,7 @@ public class MainAccess {
 	 * Sets the core
 	 * @param core The core
 	 */
-	public static void setCore(Core core) {
+	protected static void setCore(Core core) {
 		if (!_initilzed) {
 			_core = core;
 			_initilzed = true;
@@ -41,11 +40,11 @@ public class MainAccess {
 	/**
 	 * @return Gets the core
 	 */
-	public static Core getCore() {
+	protected static Core getCore() {
 		if (_initilzed) {
 			return _core;
 		} else {
-			throw new AlreadySetCoreException(_THIS);
+			throw new CoreNotSetException(_THIS);
 		}
 	}
 }

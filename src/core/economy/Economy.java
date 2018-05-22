@@ -42,8 +42,8 @@ public class Economy extends MoneyAccess {
 	/**
 	 * @return The player accounts
 	 */
-	public Bank<?> getPlayerBank() {
-		return getBank(_PLAYER_BANK_NAME);
+	public PlayerBank getPlayerBank() {
+		return (PlayerBank) getBank(_PLAYER_BANK_NAME);
 	}
 
 	/**

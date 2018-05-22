@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import core.access.MoneyAccess;
 import core.config.Database;
-import core.economy.bank.account.Account;
+import core.economy.accounts.Account;
 import core.exceptions.economy.ExistingBankException;
 import core.exceptions.economy.InvalidBankException;
 

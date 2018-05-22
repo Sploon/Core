@@ -3,6 +3,7 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import core.access.MainAccess;
@@ -15,30 +16,16 @@ import core.economy.Economy;
  * 
  * @author PhantomUnicorns
  */
-public class Core extends JavaPlugin {
+public class Core extends MainAccess {
 
 	private List<Configuration> _configs;
 	private Economy _economy;
 
 	{
-		MainAccess.setCore(this);
-	}
-
-	public static void main(String[] args) {
-		// TODO: Add config manager
-		// Main.launch(file, null, args);
-	}
-
-	@Override
-	public void onEnable() {
+		setCore(this);
 		this._configs = new ArrayList<>();
 		this._economy = new Economy();
 		new core.command.implementations.Configuration();
-	}
-
-	@Override
-	public void onDisable() {
-		saveConfigurations();
 	}
 
 	/**
@@ -105,5 +92,12 @@ public class Core extends JavaPlugin {
 	 */
 	public List<Configuration> getConfigurations() {
 		return this._configs;
+	}
+	
+	/**
+	 * @return Returns the instance of the core
+	 */
+	public static Core getInstance() {
+		return CorePlugin.getInstance().getCore();
 	}
 }

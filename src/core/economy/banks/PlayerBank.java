@@ -1,6 +1,6 @@
 package core.economy.banks;
 
-import core.economy.bank.account.MoneyAccount;
+import core.economy.accounts.MoneyAccount;
 
 /**
  * Handles the money of player accounts
@@ -11,6 +11,6 @@ public class PlayerBank extends Bank<MoneyAccount> {
 
 	@Override
 	public String getName() {
-		return _PLAYER_ACCOUNTS_NAME;
+		return _PLAYER_BANK_NAME;
 	}
 }
