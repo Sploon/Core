@@ -6,9 +6,9 @@ package core.exceptions.economy;
  * @author PhantomUnicorns
  */
 @SuppressWarnings("serial")
-public class InvalidAccountException extends RuntimeException {
+public class InvalidBankException extends RuntimeException {
 
-	public InvalidAccountException(String key) {
+	public InvalidBankException(String key) {
 		super("The account with key: [" + key + "] does not exist!");
 	}
 }

@@ -10,25 +10,14 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import core.access.MainAccess;
-import core.utils.ObjectReader;
-import core.utils.ObjectSerilizer;
-
+import core.access.ObjectAccess;
 
 /**
  * Used to create different types of configurations
  * 
  * @author PhantomUnicorns
  */
-public abstract class Configuration extends MainAccess {
-
-	private static final ObjectSerilizer _OBJECT_SERILZER;
-	private static final ObjectReader _OBJECT_READER;
-
-	static {
-		_OBJECT_SERILZER = new ObjectSerilizer();
-		_OBJECT_READER = new ObjectReader();
-	}
+public abstract class Configuration extends ObjectAccess {
 
 	protected File _file;
 	protected FileConfiguration _fileConfiguration;

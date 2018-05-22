@@ -6,9 +6,9 @@ package core.exceptions.economy;
  * @author PhantomUnicorns
  */
 @SuppressWarnings("serial")
-public class AccountsModificationException extends RuntimeException {
+public class BankModificationException extends RuntimeException {
 
-	public AccountsModificationException(String accountsName, String action) {
+	public BankModificationException(String accountsName, String action) {
 		super("The accounts [" + accountsName + "] cannot be " + action + "!");
 	}
 }

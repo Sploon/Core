@@ -6,9 +6,9 @@ package core.exceptions.economy;
  * @author PhantomUnicorns
  */
 @SuppressWarnings("serial")
-public class AccountsNotFoundException extends RuntimeException {
+public class BankNotFoundException extends RuntimeException {
 
-	public AccountsNotFoundException(String accountsName) {
+	public BankNotFoundException(String accountsName) {
 		super("The accounts [" + accountsName + "] was not found!");
 	}
 }

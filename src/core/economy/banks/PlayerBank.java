@@ -1,11 +1,13 @@
-package core.economy.accounts;
+package core.economy.banks;
+
+import core.economy.bank.account.MoneyAccount;
 
 /**
  * Handles the money of player accounts
  * 
  * @author PhantomUnicorns
  */
-public class PlayerAccounts extends Accounts {
+public class PlayerBank extends Bank<MoneyAccount> {
 
 	@Override
 	public String getName() {

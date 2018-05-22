@@ -6,9 +6,9 @@ package core.exceptions.economy;
  * @author PhantomUnicorns
  */
 @SuppressWarnings("serial")
-public class ExistingAccountException extends RuntimeException {
+public class ExistingBankException extends RuntimeException {
 
-	public ExistingAccountException(String key) {
+	public ExistingBankException(String key) {
 		super("The account with key: [" + key + "] already exist!");
 	}
 }

@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.access.MoneyAccess;
-import core.economy.accounts.Accounts;
-import core.economy.accounts.BankAccounts;
-import core.economy.accounts.PlayerAccounts;
-import core.economy.vaults.Vault;
-import core.economy.vaults.Vaults;
-import core.exceptions.economy.AccountsModificationException;
-import core.exceptions.economy.AccountsNotFoundException;
+import core.economy.banks.Bank;
+import core.economy.banks.PlayerBank;
+import core.exceptions.economy.BankModificationException;
+import core.exceptions.economy.BankNotFoundException;
 
 /**
  * Everything with economy, including player-accounts, bank-accounts, and vaults
@@ -19,14 +16,11 @@ import core.exceptions.economy.AccountsNotFoundException;
  */
 public class Economy extends MoneyAccess {
 
-	private List<Accounts> _accounts;
-	private Vaults<Vault> _vaults;
+	private List<Bank<?>> _banks;
 
 	public Economy() {
-		this._accounts = new ArrayList<>();
-		this._vaults = new Vaults<>();
-		this._accounts.add(new PlayerAccounts());
-		this._accounts.add(new BankAccounts());
+		this._banks = new ArrayList<>();
+		this._banks.add(new PlayerBank());
 	}
 
 	/**
@@ -36,34 +30,20 @@ public class Economy extends MoneyAccess {
 	 *            The name of the account
 	 * @return The account that associates with the name
 	 */
-	public Accounts getAccounts(String name) {
-		for (Accounts account : this._accounts) {
-			if (account.getName().equals(name)) {
-				return account;
+	public Bank<?> getBank(String name) {
+		for (Bank<?> bank : this._banks) {
+			if (bank.getName().equals(name)) {
+				return bank;
 			}
 		}
-		throw new AccountsNotFoundException(name);
+		throw new BankNotFoundException(name);
 	}
 
 	/**
 	 * @return The player accounts
 	 */
-	public Accounts getPlayerAccounts() {
-		return getAccounts(_PLAYER_ACCOUNTS_NAME);
-	}
-
-	/**
-	 * @return The bank accounts
-	 */
-	public Accounts getBankAccounts() {
-		return getAccounts(_BANK_ACCOUNTS_NAME);
-	}
-
-	/**
-	 * @return The vaults
-	 */
-	public Vaults<Vault> getVaults() {
-		return this._vaults;
+	public Bank<?> getPlayerBank() {
+		return getBank(_PLAYER_BANK_NAME);
 	}
 
 	/**
@@ -73,13 +53,13 @@ public class Economy extends MoneyAccess {
 	 *            The name of that account
 	 * @return If successful
 	 */
-	public boolean removeAccounts(String name) {
-		if (name.equals(_PLAYER_ACCOUNTS_NAME) || name.equals(_BANK_ACCOUNTS_NAME)) {
-			throw new AccountsModificationException(name, "removed");
+	public boolean removeBank(String name) {
+		if (name.equals(_PLAYER_BANK_NAME)) {
+			throw new BankModificationException(name, "removed");
 		}
-		for (int i = 2; i < this._accounts.size(); ++i) {
-			if (this._accounts.get(i).getName().equals(name)) {
-				this._accounts.remove(i);
+		for (int i = 2; i < this._banks.size(); ++i) {
+			if (this._banks.get(i).getName().equals(name)) {
+				this._banks.remove(i);
 				return true;
 			}
 		}

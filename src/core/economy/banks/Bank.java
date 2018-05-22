@@ -1,4 +1,4 @@
-package core.economy.accounts;
+package core.economy.banks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,29 +6,30 @@ import java.util.function.Consumer;
 
 import core.access.MoneyAccess;
 import core.config.Database;
-import core.economy.Account;
-import core.exceptions.economy.ExistingAccountException;
-import core.exceptions.economy.InvalidAccountException;
+import core.economy.bank.account.Account;
+import core.exceptions.economy.ExistingBankException;
+import core.exceptions.economy.InvalidBankException;
 
 /**
  * Handles the money of different entities
  * 
  * @author PhantomUnicorns
  */
-public abstract class Accounts extends MoneyAccess {
+public abstract class Bank<T extends Account> extends MoneyAccess {
 
-	private List<Account> _accounts;
+	private List<T> _accounts;
 	private Database _database;
 
-	public Accounts() {
+	@SuppressWarnings("unchecked")
+	public Bank() {
 		this._accounts = new ArrayList<>();
 		this._database = new Database("Economy-" + getClass().getSimpleName());
 		for (String key : this._database.getConfiguration().getKeys(false)) {
-			this._accounts.add(new Account(key, this._database.getConfiguration().getDouble(key)));
+			this._accounts.add((T) _OBJECT_READER.stringToObject(this._database.getConfiguration().getString(key)));
 		}
 		this._database.addSaver((file, config) -> {
-			for (Account account : this._accounts) {
-				config.set(account.getKey(), account.getExactAmount());
+			for (T account : this._accounts) {
+				config.set(account.getKey(), _OBJECT_SERILZER.objectToString(account));
 			}
 		});
 	}
@@ -40,15 +41,14 @@ public abstract class Accounts extends MoneyAccess {
 	 *            The account key
 	 * @return The Account
 	 */
-	public Account addAccount(String key) {
-		for (Account Account : this._accounts) {
-			if (Account.isKey(key)) {
-				throw new ExistingAccountException(key);
+	public T addAccount(T toAdd) {
+		for (T account : this._accounts) {
+			if (account.isKey(toAdd.getKey())) {
+				throw new ExistingBankException(toAdd.getKey());
 			}
 		}
-		Account Account = new Account(key, 0);
-		this._accounts.add(Account);
-		return Account;
+		this._accounts.add(toAdd);
+		return toAdd;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public abstract class Accounts extends MoneyAccess {
 	 * @return If found
 	 */
 	public boolean hasAccount(String key) {
-		for (Account account : this._accounts) {
+		for (T account : this._accounts) {
 			if (account.isKey(key)) {
 				return true;
 			}
@@ -74,13 +74,13 @@ public abstract class Accounts extends MoneyAccess {
 	 *            The key to the account from
 	 * @return The account
 	 */
-	public Account getAccount(String key) {
-		for (Account account : this._accounts) {
+	public T getAccount(String key) {
+		for (T account : this._accounts) {
 			if (account.isKey(key)) {
 				return account;
 			}
 		}
-		throw new InvalidAccountException(key);
+		throw new InvalidBankException(key);
 	}
 
 	/**
@@ -106,8 +106,8 @@ public abstract class Accounts extends MoneyAccess {
 	 * @param toRun
 	 *            The code to run
 	 */
-	public void forEach(Consumer<Account> toRun) {
-		for (Account account : this._accounts) {
+	public void forEach(Consumer<T> toRun) {
+		for (T account : this._accounts) {
 			toRun.accept(account);
 		}
 	}

@@ -7,15 +7,14 @@ import core.economy.Economy;
  * 
  * @author PhantomUnicorns
  */
-public class MoneyAccess extends MainAccess {
+public class MoneyAccess extends ObjectAccess {
 
-	protected static final String _PLAYER_ACCOUNTS_NAME, _BANK_ACCOUNTS_NAME;
+	protected static final String _PLAYER_BANK_NAME;
 
 	protected static final double _MAX_AMOUNT, _MIN_AMOUNT;
 
 	static {
-		_PLAYER_ACCOUNTS_NAME =  "Player Accounts";
-		_BANK_ACCOUNTS_NAME = "Bank Accounts";
+		_PLAYER_BANK_NAME =  "Player Bank";
 		
 		_MAX_AMOUNT = 1000000;
 		_MIN_AMOUNT = 0;
