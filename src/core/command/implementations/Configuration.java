@@ -39,7 +39,7 @@ public class Configuration extends CmdExecutor {
 	@Cmd(args = { "list" }, permission = "configuration.list", description = "This lists all configuration files")
 	public boolean list(CmdEvent event) {
 		StringBuilder list = new StringBuilder();
-		for (core.config.Configuration config : getCore().getConfigurations()) {
+		for (core.configuration.Configuration config : getCore().getConfigurations()) {
 			list.append(", " + config.getFileName());
 		}
 		event.sendMessage("Configuration Name List: " + list.toString().replaceFirst(", ", ""));

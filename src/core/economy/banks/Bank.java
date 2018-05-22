@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import core.access.MoneyAccess;
-import core.config.Database;
+import core.configuration.Database;
 import core.economy.accounts.Account;
 import core.exceptions.economy.accounts.AccountNotFoundException;
 import core.exceptions.economy.accounts.ExistingAccountException;

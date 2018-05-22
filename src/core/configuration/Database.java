@@ -1,4 +1,4 @@
-package core.config;
+package core.configuration;
 
 import java.io.File;
 import java.util.ArrayList;

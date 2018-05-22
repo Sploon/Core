@@ -5,7 +5,7 @@ import java.util.List;
 
 import core.access.MainAccess;
 import core.command.CmdExecutor;
-import core.config.Configuration;
+import core.configuration.Configuration;
 import core.economy.Economy;
 
 /**
