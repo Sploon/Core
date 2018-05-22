@@ -1,4 +1,4 @@
-package core.exceptions.economy;
+package core.exceptions.economy.banks;
 
 /**
  * When you create an account with key and key is already in use
@@ -9,6 +9,6 @@ package core.exceptions.economy;
 public class ExistingBankException extends RuntimeException {
 
 	public ExistingBankException(String key) {
-		super("The account with key: [" + key + "] already exist!");
+		super("The bank with name: [" + key + "] already exist!");
 	}
 }

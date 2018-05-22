@@ -52,6 +52,6 @@ public class MoneyAccess extends ObjectAccess {
 	 * @return The economy; used to handle money
 	 */
 	protected static Economy getEconomy() {
-		return _core.getEconomy();
+		return getCore().getEconomy();
 	}
 }

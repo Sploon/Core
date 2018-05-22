@@ -11,7 +11,7 @@ import core.access.MainAccess;
  * 
  * @author PhantomUnicorns
  */
-public class CmdEvent {
+public class CmdEvent extends MainAccess {
 
 	protected CommandSender _sender;
 	protected Command _command;
@@ -130,6 +130,6 @@ public class CmdEvent {
 	}
 	
 	public void sendMessage(String message) {
-		this._sender.sendMessage(ChatColor.translateAlternateColorCodes('&', MainAccess.MAIN_COLOR + message));
+		this._sender.sendMessage(ChatColor.translateAlternateColorCodes('&', _MAIN_COLOR + message));
 	}
 }

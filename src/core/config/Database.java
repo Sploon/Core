@@ -44,7 +44,7 @@ public class Database extends Configuration {
 	public void onDisable() {
 		try {
 			if (!this._file.exists()) {
-				_core.getDataFolder().mkdirs();
+				getPlugin().getDataFolder().mkdirs();
 				this._file.createNewFile();
 			}
 			this._fileConfiguration = YamlConfiguration.loadConfiguration(this._file);

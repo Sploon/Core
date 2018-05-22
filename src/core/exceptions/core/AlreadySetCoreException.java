@@ -8,7 +8,7 @@ package core.exceptions.core;
 @SuppressWarnings("serial")
 public class AlreadySetCoreException extends RuntimeException {
 
-	public AlreadySetCoreException(Class<?> clazz) {
-		super("The core for the class: [" + clazz.getName() + "] has already been set!");
+	public AlreadySetCoreException(Class<?> clazz, String type) {
+		super("The " + type + " for the class: [" + clazz.getName() + "] has already been set!");
 	}
 }

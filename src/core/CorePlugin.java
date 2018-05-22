@@ -3,6 +3,8 @@ package core;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import core.access.MainAccess;
+
 /**
  * Core class of the Core plugin
  * 
@@ -19,7 +21,8 @@ public class CorePlugin extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		this._core = new Core();
+		MainAccess.setPlugin(this);
+		MainAccess.setCore(this._core = new Core());
 	}
 
 	@Override

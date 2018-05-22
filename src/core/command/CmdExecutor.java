@@ -46,7 +46,7 @@ public abstract class CmdExecutor extends CommandAccess implements CommandExecut
 				}
 			}
 		}
-		_core.registerCommand(this);
+		getCore().registerCommand(this);
 	}
 
 	@Override
@@ -177,7 +177,7 @@ public abstract class CmdExecutor extends CommandAccess implements CommandExecut
 									args.append(" <args>");
 								}
 								event.sendMessage(format.replaceAll("%cmd", event.getLabel() + args.toString())
-										.replaceAll("%desc", metaData.getDesc()).replaceAll("%mc", MAIN_COLOR));
+										.replaceAll("%desc", metaData.getDesc()).replaceAll("%mc", _MAIN_COLOR));
 							}
 						} else if (metaData.getCommandType() == CmdType.CONSOLE) {
 							if (event.getSender() instanceof ConsoleCommandSender) {
@@ -189,7 +189,7 @@ public abstract class CmdExecutor extends CommandAccess implements CommandExecut
 									args.append(" <args>");
 								}
 								event.sendMessage(format.replaceAll("%cmd", event.getLabel() + args.toString())
-										.replaceAll("%desc", metaData.getDesc()).replaceAll("%mc", MAIN_COLOR));
+										.replaceAll("%desc", metaData.getDesc()).replaceAll("%mc", _MAIN_COLOR));
 							}
 						} else {
 							StringBuilder args = new StringBuilder();
@@ -200,7 +200,7 @@ public abstract class CmdExecutor extends CommandAccess implements CommandExecut
 								args.append(" <args>");
 							}
 							event.sendMessage(format.replaceAll("%cmd", event.getLabel() + args.toString())
-									.replaceAll("%desc", metaData.getDesc()).replaceAll("%mc", MAIN_COLOR));
+									.replaceAll("%desc", metaData.getDesc()).replaceAll("%mc", _MAIN_COLOR));
 						}
 					}
 				}

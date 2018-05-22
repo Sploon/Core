@@ -26,14 +26,14 @@ public abstract class Configuration extends ObjectAccess {
 	public Configuration(String fileName) {
 		try {
 			this._fileName = fileName;
-			this._file = new File(_core.getDataFolder() + File.separator + this._fileName.replaceAll("SEP", File.separator) + ".yml");
+			this._file = new File(getPlugin().getDataFolder() + File.separator + this._fileName.replaceAll("SEP", File.separator) + ".yml");
 			if (!this._file.exists()) {
-				_core.getDataFolder().mkdirs();
+				getPlugin().getDataFolder().mkdirs();
 				this._file.createNewFile();
 			}
 			this._fileConfiguration = YamlConfiguration.loadConfiguration(this._file);
 			this._fileConfiguration.save(_file);
-			_core.registerConfiguration(this);
+			getCore().registerConfiguration(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

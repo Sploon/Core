@@ -3,9 +3,6 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import core.access.MainAccess;
 import core.command.CmdExecutor;
 import core.config.Configuration;
@@ -22,7 +19,6 @@ public class Core extends MainAccess {
 	private Economy _economy;
 
 	{
-		setCore(this);
 		this._configs = new ArrayList<>();
 		this._economy = new Economy();
 		new core.command.implementations.Configuration();
@@ -57,7 +53,7 @@ public class Core extends MainAccess {
 	 *            The command executor to register
 	 */
 	public void registerCommand(CmdExecutor cmdExecutor) {
-		getCommand(cmdExecutor.getClass().getSimpleName().toLowerCase()).setExecutor(cmdExecutor);
+		getPlugin().getCommand(cmdExecutor.getClass().getSimpleName().toLowerCase()).setExecutor(cmdExecutor);
 	}
 
 	/**

@@ -8,7 +8,7 @@ package core.exceptions.core;
 @SuppressWarnings("serial")
 public class CoreNotSetException extends RuntimeException {
 
-	public CoreNotSetException(Class<?> clazz) {
-		super("The core for the class: [" + clazz.getName() + "] has not been set!");
+	public CoreNotSetException(Class<?> clazz, String type) {
+		super("The " + type + " for the class: [" + clazz.getName() + "] has not been set!");
 	}
 }

@@ -1,4 +1,4 @@
-package core.exceptions.economy;
+package core.exceptions.economy.banks;
 
 /**
  * When you modifiy a main accounts
@@ -9,6 +9,6 @@ package core.exceptions.economy;
 public class BankModificationException extends RuntimeException {
 
 	public BankModificationException(String accountsName, String action) {
-		super("The accounts [" + accountsName + "] cannot be " + action + "!");
+		super("The bank [" + accountsName + "] cannot be " + action + "!");
 	}
 }

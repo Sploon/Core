@@ -20,7 +20,7 @@ public class Configuration extends CmdExecutor {
 	@Cmd(args = {
 			"save" }, permission = "configuration.save", description = "This saves the configuration files that are registered")
 	public boolean save(CmdEvent event) {
-		_core.saveConfigurations();
+		getCore().saveConfigurations();
 		event.sendMessage("You have saved the configuration");
 		return true;
 	}
@@ -28,7 +28,7 @@ public class Configuration extends CmdExecutor {
 	@Cmd(args = {
 			"save" }, permission = "configuration.save", overLength = true, description = "This saves the configuration files that are registered")
 	public boolean saveExact(CmdEvent event) {
-		if (_core.saveConfiguration(event.getArgs(1))) {
+		if (getCore().saveConfiguration(event.getArgs(1))) {
 			event.sendMessage("You have saved the configuration");
 		} else {
 			event.sendMessage("That configuration does not exist!");
@@ -39,7 +39,7 @@ public class Configuration extends CmdExecutor {
 	@Cmd(args = { "list" }, permission = "configuration.list", description = "This lists all configuration files")
 	public boolean list(CmdEvent event) {
 		StringBuilder list = new StringBuilder();
-		for (core.config.Configuration config : _core.getConfigurations()) {
+		for (core.config.Configuration config : getCore().getConfigurations()) {
 			list.append(", " + config.getFileName());
 		}
 		event.sendMessage("Configuration Name List: " + list.toString().replaceFirst(", ", ""));

@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 import core.access.MoneyAccess;
 import core.config.Database;
 import core.economy.accounts.Account;
-import core.exceptions.economy.ExistingBankException;
-import core.exceptions.economy.InvalidBankException;
+import core.exceptions.economy.accounts.AccountNotFoundException;
+import core.exceptions.economy.accounts.ExistingAccountException;
 
 /**
  * Handles the money of different entities
@@ -44,7 +44,7 @@ public abstract class Bank<T extends Account> extends MoneyAccess {
 	public T addAccount(T toAdd) {
 		for (T account : this._accounts) {
 			if (account.isKey(toAdd.getKey())) {
-				throw new ExistingBankException(toAdd.getKey());
+				throw new ExistingAccountException(toAdd.getKey());
 			}
 		}
 		this._accounts.add(toAdd);
@@ -80,7 +80,7 @@ public abstract class Bank<T extends Account> extends MoneyAccess {
 				return account;
 			}
 		}
-		throw new InvalidBankException(key);
+		throw new AccountNotFoundException(key);
 	}
 
 	/**

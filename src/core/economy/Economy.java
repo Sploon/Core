@@ -6,8 +6,9 @@ import java.util.List;
 import core.access.MoneyAccess;
 import core.economy.banks.Bank;
 import core.economy.banks.PlayerBank;
-import core.exceptions.economy.BankModificationException;
-import core.exceptions.economy.BankNotFoundException;
+import core.exceptions.economy.banks.BankModificationException;
+import core.exceptions.economy.banks.BankNotFoundException;
+import core.exceptions.economy.banks.ExistingBankException;
 
 /**
  * Everything with economy, including player-accounts, bank-accounts, and vaults
@@ -21,6 +22,23 @@ public class Economy extends MoneyAccess {
 	public Economy() {
 		this._banks = new ArrayList<>();
 		this._banks.add(new PlayerBank());
+	}
+
+	/**
+	 * Gets the account associated with name
+	 * 
+	 * @param name
+	 *            The name of the account
+	 * @return The account that associates with the name
+	 */
+	public Bank<?> addBank(Bank<?> bank) {
+		for (Bank<?> b : this._banks) {
+			if (b.getName().equals(bank.getName())) {
+				throw new ExistingBankException(bank.getName());
+			}
+		}
+		this._banks.add(bank);
+		return bank;
 	}
 
 	/**

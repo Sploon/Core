@@ -1,4 +1,4 @@
-package core.exceptions.economy;
+package core.exceptions.economy.banks;
 
 /**
  * When the accounts is not found
@@ -9,6 +9,6 @@ package core.exceptions.economy;
 public class BankNotFoundException extends RuntimeException {
 
 	public BankNotFoundException(String accountsName) {
-		super("The accounts [" + accountsName + "] was not found!");
+		super("The bank [" + accountsName + "] was not found!");
 	}
 }
