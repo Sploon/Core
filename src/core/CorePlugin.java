@@ -23,6 +23,7 @@ public class CorePlugin extends JavaPlugin {
 	public void onEnable() {
 		MainAccess.setPlugin(this);
 		MainAccess.setCore(this._core = new Core());
+		this._core.init();
 	}
 
 	@Override

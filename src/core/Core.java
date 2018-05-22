@@ -18,7 +18,7 @@ public class Core extends MainAccess {
 	private List<Configuration> _configs;
 	private Economy _economy;
 
-	{
+	public void init() {
 		this._configs = new ArrayList<>();
 		this._economy = new Economy();
 		new core.command.implementations.Configuration();
